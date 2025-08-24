@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/xaionaro-go/androidetc"
 )
@@ -18,6 +19,6 @@ func main() {
 			panic(err)
 		}
 
-		println(string(b))
+		fmt.Println(string(b))
 	}
 }
