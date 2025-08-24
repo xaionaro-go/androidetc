@@ -15,7 +15,7 @@ type MediaCodecsDescriptor struct {
 	Settings []Setting    `xml:"Settings>Setting"`
 }
 
-type MediaCodecsDescriptors []*MediaCodecsDescriptor
+type MediaCodecsDescriptors []MediaCodecsDescriptor
 
 func (m MediaCodecsDescriptors) Decoders() []MediaCodec {
 	var all []MediaCodec
@@ -45,6 +45,7 @@ type Setting struct {
 type MediaCodec struct {
 	Name     string      `xml:"name,attr"`
 	Domain   string      `xml:"domain,attr,omitempty"`
+	Type     string      `xml:"type,attr,omitempty"`
 	Types    []CodecType `xml:"Type"`
 	Quirks   []Quirk     `xml:"Quirk"`
 	Limits   []Limit     `xml:"Limit"`
@@ -129,7 +130,7 @@ func ParseMediaCodecs() (MediaCodecsDescriptors, error) {
 			return nil, fmt.Errorf("parsing %s: %w", file, err)
 		}
 
-		result = append(result, desc)
+		result = append(result, *desc)
 	}
 
 	return result, nil
