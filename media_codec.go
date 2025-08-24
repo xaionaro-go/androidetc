@@ -110,7 +110,7 @@ func ParseMediaCodecs() (MediaCodecsDescriptors, error) {
 	for _, dir := range defaultSearchDirs {
 		entries, err := os.ReadDir(dir)
 		if err != nil {
-			return nil, fmt.Errorf("reading dir %s: %w", dir, err)
+			continue
 		}
 		for _, entry := range entries {
 			if entry.IsDir() {
